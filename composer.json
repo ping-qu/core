@@ -1,6 +1,6 @@
 {
     "name": "ping-qu/core",
-    "description": "whiteboard php library",
+    "description": "pingqu core php library",
     "version": "0.0.1",
     "require": {
         "php": ">=5.3",
