@@ -52,4 +52,10 @@ class HttpResponse
 
         return false;
     }
+
+    public function getMessage(){
+        $message = $this->body;
+
+        return json_decode($message);
+    }
 }

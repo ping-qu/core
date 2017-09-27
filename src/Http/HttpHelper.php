@@ -30,7 +30,7 @@ class HttpHelper
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $httpMethod);
-        if (defined('ENABLE_HTTP_PROXY')) {
+        if (defined('ENABLE_HTTP_PROXY')) {  //如果有设置http代理
             curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
             curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_IP);
             curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
@@ -39,6 +39,9 @@ class HttpHelper
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        if ($httpMethod == 'POST'){
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+        }
         if (self::$readTimeout) {
             curl_setopt($ch, CURLOPT_TIMEOUT, self::$readTimeout);
         }
