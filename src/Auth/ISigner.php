@@ -17,45 +17,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-namespace Pingqu\Http;
+namespace Pingqu\Auth;
 
-class HttpResponse
+interface ISigner
 {
-    private $body;
-    private $status;
+    public function getSignatureMethod();
 
-    public function getBody()
-    {
-        return $this->body;
-    }
+    public function getSignatureVersion();
 
-    public function setBody($body)
-    {
-        $this->body = $body;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function setStatus($status)
-    {
-        $this->status  = $status;
-    }
-
-    public function isSuccess()
-    {
-        if (200 <= $this->status && 300 > $this->status) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function getMessage(){
-        $response = $this->body;
-        $message = json_decode($response,true);
-        return is_array($message)?$message['data']['msg']:'未知异常';
-    }
+    public function signString($source, $accessSecret);
 }

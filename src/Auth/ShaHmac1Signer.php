@@ -17,45 +17,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-namespace Pingqu\Http;
+namespace Pingqu\Auth;
 
-class HttpResponse
+class ShaHmac1Signer implements ISigner
 {
-    private $body;
-    private $status;
-
-    public function getBody()
+    public function signString($source, $accessSecret)
     {
-        return $this->body;
+        return    base64_encode(hash_hmac('sha1', $source, $accessSecret, true));
     }
 
-    public function setBody($body)
+    public function getSignatureMethod()
     {
-        $this->body = $body;
+        return "HMAC-SHA1";
     }
 
-    public function getStatus()
+    public function getSignatureVersion()
     {
-        return $this->status;
-    }
-
-    public function setStatus($status)
-    {
-        $this->status  = $status;
-    }
-
-    public function isSuccess()
-    {
-        if (200 <= $this->status && 300 > $this->status) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function getMessage(){
-        $response = $this->body;
-        $message = json_decode($response,true);
-        return is_array($message)?$message['data']['msg']:'未知异常';
+        return "1.0";
     }
 }
