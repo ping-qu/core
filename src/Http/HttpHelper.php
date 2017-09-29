@@ -53,6 +53,7 @@ class HttpHelper
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
+
         if (is_array($headers) && 0 < count($headers)) {
             $httpHeaders = self::getHttpHearders($headers);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeaders);
@@ -77,4 +78,6 @@ class HttpHelper
 
         return $httpHeader;
     }
+
+
 }

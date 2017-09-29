@@ -21,9 +21,9 @@ namespace Pingqu\Auth;
 
 class ShaHmac1Signer implements ISigner
 {
-    public function signString($source, $accessSecret)
+    public function signString($access_key, $accessSecret)
     {
-        return    base64_encode(hash_hmac('sha1', $source, $accessSecret, true));
+        return base64_encode(hash_hmac('sha1', $access_key, $accessSecret, true));
     }
 
     public function getSignatureMethod()
@@ -35,4 +35,5 @@ class ShaHmac1Signer implements ISigner
     {
         return "1.0";
     }
+
 }
