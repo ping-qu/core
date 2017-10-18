@@ -40,7 +40,7 @@ class HttpHelper
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if ($httpMethod == 'POST'){
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postFields));
         }
         if (self::$readTimeout) {
             curl_setopt($ch, CURLOPT_TIMEOUT, self::$readTimeout);
