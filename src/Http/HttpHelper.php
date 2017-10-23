@@ -62,7 +62,7 @@ class HttpHelper
         $httpResponse->setBody(curl_exec($ch));
         $httpResponse->setStatus(curl_getinfo($ch, CURLINFO_HTTP_CODE));
         if (curl_errno($ch)) {
-            throw new Exception("Speicified endpoint or uri is not valid.", "SDK.ServerUnreachable");
+            throw new \ApiException('pingqu-cloud-sdk is unavailable');
         }
         curl_close($ch);
 

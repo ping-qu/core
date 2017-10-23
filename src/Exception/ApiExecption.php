@@ -8,13 +8,15 @@
 
 class ApiException extends \Exception
 {
-    private $message;
+    protected $message;
     private $error_id;
-    private $code;
+    protected $code;
 
-    function __construct($message = '', $error_id = 'ERROR', $code = 400)
+    function __construct($message = '', $errorId = 'ERROR', $statusCode = 400)
     {
-            parent::__construct($message,$code);
+        parent::__construct($message,$statusCode);
+        $this->code = $statusCode;
+        $this->message = $message;
     }
 
     public function getHTTPStatus()
