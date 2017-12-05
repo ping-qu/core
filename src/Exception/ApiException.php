@@ -5,7 +5,7 @@
  * Date: 2017/10/20
  * Time: 下午3:51
  */
-
+namespace Pingqu\Exception;
 class ApiException extends \Exception
 {
     protected $message;
